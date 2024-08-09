@@ -1,5 +1,1 @@
-com.netty.rpc.client.route.impl.RpcLoadBalanceConsistentHash
-com.netty.rpc.client.route.impl.RpcLoadBalanceRandom
-com.netty.rpc.client.route.impl.RpcLoadBalanceRoundRobin
-com.netty.rpc.client.route.impl.RpcLoadBalanceLFU
-com.netty.rpc.client.route.impl.RpcLoadBalanceLRU
+rpcLoadBalance=com.netty.rpc.client.route.impl.RpcLoadBalanceRoundRobin

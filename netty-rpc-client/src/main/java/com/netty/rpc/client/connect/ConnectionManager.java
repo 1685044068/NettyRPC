@@ -4,6 +4,7 @@ import com.netty.rpc.client.handler.RpcClientHandler;
 import com.netty.rpc.client.handler.RpcClientInitializer;
 import com.netty.rpc.client.route.RpcLoadBalance;
 import com.netty.rpc.client.route.impl.RpcLoadBalanceRoundRobin;
+import com.netty.rpc.loader.ExtensionLoader;
 import com.netty.rpc.protocol.RpcProtocol;
 import com.netty.rpc.protocol.RpcServiceInfo;
 import io.netty.bootstrap.Bootstrap;
@@ -44,7 +45,9 @@ public class ConnectionManager {
     private ReentrantLock lock = new ReentrantLock();//一个可重入的互斥锁,它提供了比 synchronized 关键字更细粒度的锁控制
     private Condition connected = lock.newCondition();//一个条件变量,它与 ReentrantLock 配合使用,用于线程的等待和通知
     private long waitTimeout = 5000;
-    private RpcLoadBalance loadBalance = new RpcLoadBalanceRoundRobin();//负载均衡策略
+    //private RpcLoadBalance loadBalance = new RpcLoadBalanceRoundRobin();//负载均衡策略
+    private RpcLoadBalance loadBalance = ExtensionLoader.getExtensionLoader(RpcLoadBalance.class).getExtension("rpcLoadBalance");
+
     private volatile boolean isRunning = true;//volatile保证可见性
 
     private ConnectionManager() {

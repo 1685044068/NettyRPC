@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-        Serializer serializer = KryoSerializer.class.newInstance();
-        //Serializer serializer= ExtensionLoader.getExtensionLoader(Serializer.class).getExtension("KryoSerializer");
+        //Serializer serializer = KryoSerializer.class.newInstance();
+        Serializer serializer= ExtensionLoader.getExtensionLoader(Serializer.class).getExtension("serializer");
         ChannelPipeline cp = socketChannel.pipeline();
         cp.addLast(new IdleStateHandler(0, 0, Beat.BEAT_INTERVAL, TimeUnit.SECONDS));//心跳连接
         cp.addLast(new RpcEncoder(RpcRequest.class, serializer));//编码处理
