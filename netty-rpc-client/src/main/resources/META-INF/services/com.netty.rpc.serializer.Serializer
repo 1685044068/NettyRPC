@@ -1,0 +1,4 @@
+com.netty.rpc.serializer.protostuff.ProtostuffSerializer
+com.netty.rpc.serializer.hessian.HessianSerializer
+com.netty.rpc.serializer.hessian.Hessian1Serializer
+com.netty.rpc.serializer.kryo.KryoSerializer
